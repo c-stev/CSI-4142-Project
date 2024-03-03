@@ -1,5 +1,3 @@
-# CSI-4142-Project
-
 # Analyzing Financial Sector Trends with Yahoo! Finance
 
 ## Team Members
