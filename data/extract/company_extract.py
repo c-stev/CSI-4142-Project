@@ -12,8 +12,8 @@ def get_data(symbol, name, sector):
 
 print("Pulling data from Yahoo! Finance...")
 
-# Writes the obtained data from the source file and yfinance to a new companies.csv file
-with open('../../data/companies.csv', mode='w', newline='', encoding='utf-8') as file:
+# Writes the obtained data from the source file and yfinance to a new company_data.csv file
+with open('../../data/company_data.csv', mode='w', newline='', encoding='utf-8') as file:
     writer = csv.DictWriter(file, fieldnames=['ticker', 'name', 'sector', 'country'])
     writer.writeheader()
 
@@ -24,4 +24,4 @@ with open('../../data/companies.csv', mode='w', newline='', encoding='utf-8') as
             row_data = get_data(row['Symbol'], row['Name'], row['Sector'])
             writer.writerow(row_data)
 
-print("File 'companies.csv' successfully created!")
+print("File 'company_data.csv' successfully created!")
