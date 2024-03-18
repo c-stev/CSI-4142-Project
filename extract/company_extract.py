@@ -18,7 +18,7 @@ with open('../../data/company_data.csv', mode='w', newline='', encoding='utf-8')
     writer.writeheader()
 
     # Reads the original file and obtain the symbol and sector data
-    with open('src/SP500.csv', mode='r', encoding='utf-8') as sp500:
+    with open('../data/src/SP500.csv', mode='r', encoding='utf-8') as sp500:
         reader = csv.DictReader(sp500)
         for row in reader:
             row_data = get_data(row['Symbol'], row['Name'], row['Sector'])

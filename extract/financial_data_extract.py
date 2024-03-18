@@ -22,13 +22,13 @@ def get_data(symbol):
 print("Pulling data from Yahoo! Finance...")
 
 # Writes the obtained data from the source file and yfinance to a new companies.csv file
-with open('../../data/financial_data.csv', mode='w', newline='', encoding='utf-8') as file:
+with open('../data/financial_data.csv', mode='w', newline='', encoding='utf-8') as file:
     fieldnames = ['Ticker', 'Date', 'Open', 'Close', 'High', 'Low']
     writer = csv.DictWriter(file, fieldnames=fieldnames)
     writer.writeheader()
 
     # Reads the original file and obtain the symbol and sector data
-    with open('src/SP500.csv', mode='r', encoding='utf-8') as sp500:
+    with open('../data/src/SP500.csv', mode='r', encoding='utf-8') as sp500:
         reader = csv.DictReader(sp500)
         for row in reader:
             row_data = get_data(row['Symbol'])

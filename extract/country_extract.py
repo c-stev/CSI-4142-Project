@@ -29,12 +29,12 @@ def get_data(country_code):
 
 
 # Read the country codes from the CSV
-with open('src/countries.csv', mode='r', encoding='utf-8') as csvfile:
+with open('../data/src/countries.csv', mode='r', encoding='utf-8') as csvfile:
     reader = csv.DictReader(csvfile)
     country_codes = [row['Code'] for row in reader]
 
 # Fetch the data for each country and write to a new CSV
-with open('../../data/country_data.csv', mode='w', newline='', encoding='utf-8') as file:
+with open('../data/country_data.csv', mode='w', newline='', encoding='utf-8') as file:
     fieldnames = ['Code', 'Year', 'Country', 'Population', 'GDP', 'Inflation', 'Employment', 'Unemployment']
     writer = csv.DictWriter(file, fieldnames=fieldnames)
     writer.writeheader()
