@@ -15,6 +15,9 @@ def get_data(symbol):
             'Close': row['Close'],
             'High': row['High'],
             'Low': row['Low'],
+            'Volume': row['Volume'],
+            'Dividends': row['Dividends'],
+            'Stock Splits': row['Stock Splits']
         })
     return data
 
@@ -23,7 +26,7 @@ print("Pulling data from Yahoo! Finance...")
 
 # Writes the obtained data from the source file and yfinance to a new company_data.csv file
 with open('../data/financial_data.csv', mode='w', newline='', encoding='utf-8') as file:
-    fieldnames = ['Ticker', 'Date', 'Open', 'Close', 'High', 'Low']
+    fieldnames = ['Ticker', 'Date', 'Open', 'Close', 'High', 'Low', 'Volume', 'Dividends', 'Stock Splits']
     writer = csv.DictWriter(file, fieldnames=fieldnames)
     writer.writeheader()
 
