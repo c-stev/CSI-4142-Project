@@ -15,7 +15,7 @@ def get_staged_df():
         if row['Country'] not in unique_countries:
             df.drop(index, inplace=True)
     # Faulty data in 2023 and 2024 so they are removed
-    df = df[~df['Year'].isin([2023, 2024])]
+    df.loc[df['Year'].isin([2023, 2024]), ['Population', 'GDP', 'Inflation', 'Employment', 'Unemployment']] = pd.NA
     # Setting each 'Year' to {Year}-01-01
     df['Date'] = pd.to_datetime(df['Year'], format='%Y').dt.year.astype(str) + '-01-01'
     df.drop(columns=['Year'], inplace=True)
