@@ -1,5 +1,7 @@
 import csv
 import wbdata
+from os.path import exists
+
 
 # Define the indicators
 indicators = {
@@ -28,21 +30,25 @@ def get_data(country_code):
     return data
 
 
-# Read the country codes from the CSV
-with open('../data/src/countries.csv', mode='r', encoding='utf-8') as csvfile:
-    reader = csv.DictReader(csvfile)
-    country_codes = [row['Code'] for row in reader]
+def extract_countries():
+    if not exists('../data/country_data.csv'):
+        # Read the country codes from the CSV
+        with open('../data/src/countries.csv', mode='r', encoding='utf-8') as csvfile:
+            reader = csv.DictReader(csvfile)
+            country_codes = [row['Code'] for row in reader]
 
-# Fetch the data for each country and write to a new CSV
-with open('../data/country_data.csv', mode='w', newline='', encoding='utf-8') as file:
-    fieldnames = ['Code', 'Year', 'Country', 'Population', 'GDP', 'Inflation', 'Employment', 'Unemployment']
-    writer = csv.DictWriter(file, fieldnames=fieldnames)
-    writer.writeheader()
+        # Fetch the data for each country and write to a new CSV
+        with open('../data/country_data.csv', mode='w', newline='', encoding='utf-8') as file:
+            fieldnames = ['Code', 'Year', 'Country', 'Population', 'GDP', 'Inflation', 'Employment', 'Unemployment']
+            writer = csv.DictWriter(file, fieldnames=fieldnames)
+            writer.writeheader()
 
-    for code in country_codes:
-        print(f"Pulling data for country code: {code}")
-        country_data = get_data(code)
-        for row in country_data:
-            writer.writerow(row)
+            for code in country_codes:
+                print(f"Pulling data for country code: {code}")
+                country_data = get_data(code)
+                for row in country_data:
+                    writer.writerow(row)
 
-print("File 'country_data.csv' successfully created!")
+        print("File 'country_data.csv' successfully created!")
+    else:
+        print("country_data.csv already exists! Skipping...")
