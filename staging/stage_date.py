@@ -17,4 +17,11 @@ def get_staged_df():
     # Generate IDs
     df['Financial_Data_ID'] = range(1, len(df) + 1)
     df.set_index('Financial_Data_ID', inplace=True)
+    # Adding a 'Day_String' and 'Weekday' column
+    df['Day_String'] = df['Date'].dt.day_name()
+    df['Weekday'] = df['Date'].dt.dayofweek < 5
     return df
+
+
+x = get_staged_df()
+x.to_csv('output.csv')
