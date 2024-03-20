@@ -1,5 +1,6 @@
 import pandas as pd
 import stage_company as companies
+import extract.country_extract as src
 
 
 def get_df():
@@ -8,6 +9,7 @@ def get_df():
 
 
 def get_staged_df():
+    src.extract_countries()
     df = pd.read_csv('../data/country_data.csv')
     # Removing Countries not hosting an S&P 500 company (irrelevant data)
     unique_countries = companies.get_df()['country'].unique().tolist()

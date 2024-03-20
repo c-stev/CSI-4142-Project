@@ -1,4 +1,5 @@
 import pandas as pd
+import extract.financial_data_extract as src
 
 
 def get_df():
@@ -7,6 +8,7 @@ def get_df():
 
 
 def get_staged_df():
+    src.extract_financial_data()
     df = pd.read_csv('../data/financial_data.csv')
     # Removing useless columns
     df = df.drop(columns=['Dividends', 'Stock Splits'])

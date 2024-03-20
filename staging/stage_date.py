@@ -1,4 +1,5 @@
 import pandas as pd
+import extract.date_extract as src
 
 
 def get_df():
@@ -7,6 +8,7 @@ def get_df():
 
 
 def get_staged_df():
+    src.extract_dates()
     df = pd.read_csv('../data/date_data.csv')
     # Converting the Date column to a datetime object
     df['Date'] = pd.to_datetime(df['Date'])

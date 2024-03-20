@@ -1,4 +1,5 @@
 import pandas as pd
+import extract.company_extract as src
 
 
 def get_df():
@@ -7,6 +8,7 @@ def get_df():
 
 
 def get_staged_df():
+    src.extract_companies()
     df = pd.read_csv('../data/company_data.csv')
     # Renaming columns
     df = df.rename(columns={'ticker': 'Ticker', 'name': 'Company', 'sector': 'Sector', 'country': 'Country'})
