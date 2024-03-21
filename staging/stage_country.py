@@ -1,5 +1,5 @@
 import pandas as pd
-import stage_company as companies
+import staging.stage_company as companies
 import extract.country_extract as src
 from os.path import dirname, abspath
 
@@ -48,6 +48,6 @@ def get_staged_df():
     # Adding indicator that a rows numeric values were interpolated
     df['Interpolated'] = ~((df['Date'].dt.month == 1) & (df['Date'].dt.day == 1))
     # Generate IDs
-    df['Financial_Data_ID'] = range(1, len(df) + 1)
-    df.set_index('Financial_Data_ID', inplace=True)
+    df['Country_ID'] = range(1, len(df) + 1)
+    df.set_index('Country_ID', inplace=True)
     return df

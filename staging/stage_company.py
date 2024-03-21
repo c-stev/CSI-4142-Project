@@ -24,6 +24,6 @@ def get_staged_df():
         if df[col].dtype == "object":
             df[col] = df[col].str.strip()
     # Generate IDs
-    df['Financial_Data_ID'] = range(1, len(df) + 1)
-    df.set_index('Financial_Data_ID', inplace=True)
+    df['Company_ID'] = range(1, len(df) + 1)
+    df.set_index('Company_ID', inplace=True)
     return df
