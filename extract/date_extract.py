@@ -1,11 +1,12 @@
 import csv
 from datetime import datetime, timedelta
-from os.path import exists
+from os.path import exists, dirname, abspath
 
 
 def extract_dates():
-    if not exists('../data/date_data.csv'):
-        with open('../data/date_data.csv', mode='w', newline='', encoding='utf-8') as file:
+    source_dir = dirname(dirname(abspath(__file__)))
+    if not exists(source_dir + '/data/date_data.csv'):
+        with open(source_dir + '/data/date_data.csv', mode='w', newline='', encoding='utf-8') as file:
             writer = csv.DictWriter(file, fieldnames=['Date', 'Year', 'Quarter', 'Month', 'Month_String', 'Day'])
             writer.writeheader()
 

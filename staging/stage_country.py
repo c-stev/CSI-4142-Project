@@ -1,16 +1,19 @@
 import pandas as pd
 import stage_company as companies
 import extract.country_extract as src
+from os.path import dirname, abspath
 
 
 def get_df():
-    df = pd.read_csv('../data/country_data.csv')
+    source_dir = dirname(dirname(abspath(__file__)))
+    df = pd.read_csv(source_dir + '/data/country_data.csv')
     return df
 
 
 def get_staged_df():
+    source_dir = dirname(dirname(abspath(__file__)))
     src.extract_countries()
-    df = pd.read_csv('../data/country_data.csv')
+    df = pd.read_csv(source_dir + '/data/country_data.csv')
     # Removing Countries not hosting an S&P 500 company (irrelevant data)
     unique_countries = companies.get_df()['country'].unique().tolist()
     for index, row in df.iterrows():

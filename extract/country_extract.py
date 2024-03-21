@@ -1,7 +1,6 @@
 import csv
 import wbdata
-from os.path import exists
-
+from os.path import exists, dirname, abspath
 
 # Define the indicators
 indicators = {
@@ -31,14 +30,15 @@ def get_data(country_code):
 
 
 def extract_countries():
-    if not exists('../data/country_data.csv'):
+    source_dir = dirname(dirname(abspath(__file__)))
+    if not exists(source_dir + '/data/country_data.csv'):
         # Read the country codes from the CSV
-        with open('../data/src/countries.csv', mode='r', encoding='utf-8') as csvfile:
+        with open(source_dir + '/data/src/countries.csv', mode='r', encoding='utf-8') as csvfile:
             reader = csv.DictReader(csvfile)
             country_codes = [row['Code'] for row in reader]
 
         # Fetch the data for each country and write to a new CSV
-        with open('../data/country_data.csv', mode='w', newline='', encoding='utf-8') as file:
+        with open(source_dir + '/data/country_data.csv', mode='w', newline='', encoding='utf-8') as file:
             fieldnames = ['Code', 'Year', 'Country', 'Population', 'GDP', 'Inflation', 'Employment', 'Unemployment']
             writer = csv.DictWriter(file, fieldnames=fieldnames)
             writer.writeheader()

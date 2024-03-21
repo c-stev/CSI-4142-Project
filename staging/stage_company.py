@@ -1,15 +1,18 @@
 import pandas as pd
 import extract.company_extract as src
+from os.path import dirname, abspath
 
 
 def get_df():
-    df = pd.read_csv('../data/company_data.csv')
+    source_dir = dirname(dirname(abspath(__file__)))
+    df = pd.read_csv(source_dir + '/data/company_data.csv')
     return df
 
 
 def get_staged_df():
+    source_dir = dirname(dirname(abspath(__file__)))
     src.extract_companies()
-    df = pd.read_csv('../data/company_data.csv')
+    df = pd.read_csv(source_dir + '/data/company_data.csv')
     # Renaming columns
     df = df.rename(columns={'ticker': 'Ticker', 'name': 'Company', 'sector': 'Sector', 'country': 'Country'})
     # Removing rows whose country is '?' (since yfinance cannot find it)
