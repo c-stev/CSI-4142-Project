@@ -49,5 +49,8 @@ def get_staged_df():
     df['Interpolated'] = ~((df['Date'].dt.month == 1) & (df['Date'].dt.day == 1))
     # Generate IDs
     df['Country_ID'] = range(1, len(df) + 1)
-    df.set_index('Country_ID', inplace=True)
+    # Setting all columns to lowercase (for PostgreSQL)
+    df.columns = df.columns.str.lower()
+    # Setting population to int
+    df['population'] = df['population'].astype(int)
     return df

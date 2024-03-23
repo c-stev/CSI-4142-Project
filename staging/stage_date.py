@@ -21,12 +21,11 @@ def get_staged_df():
             df[col] = df[col].str.strip()
     # Generate IDs
     df['Date_ID'] = range(1, len(df) + 1)
-    df.set_index('Date_ID', inplace=True)
     # Adding a 'Day_String' and 'Weekday' column
     df['Day_String'] = df['Date'].dt.day_name()
     df['Weekday'] = df['Date'].dt.dayofweek < 5
+    # Setting all columns to lowercase (for PostgreSQL)
+    df.columns = df.columns.str.lower()
+    # Removing rows whose date exceeds 2022-01-01
+    df = df[df['date'] <= '2022-01-01']
     return df
-
-
-x = get_staged_df()
-x.to_csv('output.csv')
