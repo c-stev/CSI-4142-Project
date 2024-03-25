@@ -87,7 +87,11 @@ def create_database():
             country_id INTEGER REFERENCES dim_country(country_id),
             financial_data_id INTEGER REFERENCES dim_financial(financial_data_id),
             returns FLOAT,
-            volatility FLOAT
+            volatility FLOAT,
+            CONSTRAINT pk PRIMARY KEY(
+                date_id, company_id, country_id, 
+                financial_data_id
+            )
         );
     """)
 
