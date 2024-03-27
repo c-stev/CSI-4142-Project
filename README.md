@@ -12,3 +12,6 @@ include, but are not limited to, Healthcare, Technology, Financial Services, and
 extracted, analyzed, and compared with the other sectors to gain more of an understanding of the relative
 stability, volatility, and profitability of each sector. The conclusions that will eventually be drawn will offer valuable
 insights that will aid decision-making, trend-analysis, and market understanding.
+
+## Running the project
+To run the project you need to create a postgre and leave all the options to the default. The server name and user name should be the same (postgres). The database should be on the local host and port 5432. Lastly, when prompted to input a password input Group43.
