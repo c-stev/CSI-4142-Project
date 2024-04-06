@@ -8,9 +8,9 @@ import staging.stage_fact as stage_fact
 
 
 def create_database():
-    engine = create_engine('postgresql+psycopg2://postgres:Group43@localhost:5432/postgres')
+    engine = create_engine('postgresql+psycopg2://postgres:password@localhost:5432/postgres')
 
-    connection = psycopg2.connect(host="localhost", dbname="postgres",user= "postgres", password="Group43", port=5432)
+    connection = psycopg2.connect(host="localhost", dbname="postgres",user= "postgres", password="password", port=5432)
 
     cur = connection.cursor()
 
