@@ -14,4 +14,18 @@ stability, volatility, and profitability of each sector. The conclusions that wi
 insights that will aid decision-making, trend-analysis, and market understanding.
 
 ## Running the project
-To run the project you need to create a postgre and leave all the options to the default. The server name and user name should be the same (postgres). The database should be on the local host and port 5432. Lastly, when prompted to input a password input Group43.
+To run the project you need to create a PostgreSQL database and leave all the options to the default. The server name and 
+username should be the same (postgres). The database should be on the local host and port 5432. Within database/database.py, 
+please replace all instances of 'password' with your actual database password (lines 11 and 13)
+
+## Directory
+
+| Section                | Description                                                                                            |
+|------------------------|--------------------------------------------------------------------------------------------------------|
+| [Data](./data)         | This section contains all source CSVs, as well as the CSVs that are generated from the extract folder. |
+| [Database](./database) | This section contains code that will import all of the staged data into your PostgreSQL database, as well as run some pre-defined queries to demonstrate the capabilities of the data. |
+| [Extract](./extract)   | This section contains code that uses APIs to scrape web data and saves everything locally as a CSV. |
+| [Reports](./reports)   | This section contains all of the deliverable reports performed by the team.                             |
+| [Staging](./staging)   | This section contains the files that take the CSVs (both downloaded raw or generated through the extract folder) and perform staging operations on it to make it suitable for use in an actual database. |
+                |
+
