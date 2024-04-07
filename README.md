@@ -27,5 +27,3 @@ please replace all instances of 'password' with your actual database password (l
 | [Extract](./extract)   | This section contains code that uses APIs to scrape web data and saves everything locally as a CSV. |
 | [Reports](./reports)   | This section contains all of the deliverable reports performed by the team.                             |
 | [Staging](./staging)   | This section contains the files that take the CSVs (both downloaded raw or generated through the extract folder) and perform staging operations on it to make it suitable for use in an actual database. |
-                |
-
