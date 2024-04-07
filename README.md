@@ -1,4 +1,4 @@
-# Analyzing Financial Sector Trends with Yahoo! Finance
+# Analyzing Financial Sector Trends with <i>Yahoo! Finance</i>
 
 ## Team Members
 1. Cole Stevens
