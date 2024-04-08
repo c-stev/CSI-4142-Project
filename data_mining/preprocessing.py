@@ -112,7 +112,3 @@ def get_processed_data():
     df_financial = financial.get_staged_df()
     # Processing and returning the dataframes
     return process(df_country), process(df_company), process(df_date), process(df_financial)
-
-
-a, _, _, _ = get_processed_data()
-a.to_csv('country.csv')
