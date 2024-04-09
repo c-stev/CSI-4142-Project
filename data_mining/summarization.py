@@ -1,5 +1,5 @@
 import preprocessing
-import stage_fact
+from staging import stage_fact
 from matplotlib import pyplot as plt
 import numpy as np
 
@@ -27,4 +27,17 @@ plt.hist(df_fact['volatility'], bins=np.arange(0, 0.21, 0.02), edgecolor='black'
 plt.xlabel('Volatility')
 plt.ylabel('Frequency')
 plt.title('Histogram of Volatility')
+plt.show()
+
+#boxplot of distribution of returns
+plt.figure()
+red_outlier = dict(markerfacecolor='red', marker='o')
+mean = dict(markerfacecolor='green', marker='D', markeredgecolor='green')
+plt.boxplot(x=df_fact['returns'], flierprops=red_outlier, 
+             showmeans=True, meanprops=mean, notch=True);
+ax = plt.gca()
+# Set the limits of the y-axis
+ax.set_ylim([-100, 100])
+plt.title('Distribution of return by company')
+plt.ylabel('Values')
 plt.show()
