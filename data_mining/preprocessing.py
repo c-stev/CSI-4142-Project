@@ -2,6 +2,7 @@ import staging.stage_country as country
 import staging.stage_company as company
 import staging.stage_financial_data as financial
 import staging.stage_date as date
+import staging.stage_fact as fact
 import pandas as pd
 from sklearn.preprocessing import OneHotEncoder, MinMaxScaler
 
@@ -84,8 +85,13 @@ def encode_categorical(df):
     return new_df
 
 
-# Since the predictive model will only be trained off of the numeric data found in financial, we only normalize that
+# Normalizing key values found in specific dataframes
 def normalize_df(df):
+    if 'returns' in df:
+        scaler = MinMaxScaler()
+        normalize_columns = ['volatility', 'returns']
+        df[normalize_columns] = scaler.fit_transform(df[normalize_columns])
+        return df
     if 'financial_data_id' in df:
         scaler = MinMaxScaler()
         normalize_columns = ['open', 'close', 'high', 'low', 'volume']
@@ -110,5 +116,6 @@ def get_processed_data():
     df_company = company.get_staged_df()
     df_date = date.get_staged_df()
     df_financial = financial.get_staged_df()
+    df_fact = fact.get_staged_df()
     # Processing and returning the dataframes
-    return process(df_country), process(df_company), process(df_date), process(df_financial)
+    return process(df_country), process(df_company), process(df_date), process(df_financial), process(df_fact)
