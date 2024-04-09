@@ -18,6 +18,9 @@ To run the project you need to create a PostgreSQL database and leave all the op
 username should be the same (postgres). The database should be on the local host and port 5432. Within database/database.py, 
 please replace all instances of 'password' with your actual database password (lines 11 and 13)
 
+You also need to install pandas, scikit-learn, and sqlalchemy from pip 
+
+
 ## Directory
 
 | Section                | Description                                                                                            |

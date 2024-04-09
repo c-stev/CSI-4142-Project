@@ -5,12 +5,13 @@ import staging.stage_company as stage_company
 import staging.stage_date as stage_date
 import staging.stage_financial_data as stage_fd
 import staging.stage_fact as stage_fact
+import data_mining.svm_detection as svm
 
 
 def create_database():
-    engine = create_engine('postgresql+psycopg2://postgres:password@localhost:5432/postgres')
+    engine = create_engine('postgresql+psycopg2://postgres:Group43@localhost:5432/postgres')
 
-    connection = psycopg2.connect(host="localhost", dbname="postgres",user= "postgres", password="password", port=5432)
+    connection = psycopg2.connect(host="localhost", dbname="postgres",user= "postgres", password="Group43", port=5432)
 
     cur = connection.cursor()
 
@@ -100,7 +101,7 @@ def create_database():
     #get all the data frames
     f_country = stage_country.get_staged_df()
     f_country.set_index('country_id', inplace=True)
-
+    
     f_company = stage_company.get_staged_df()
     f_company.set_index('company_id', inplace=True)
 
@@ -109,10 +110,18 @@ def create_database():
 
     f_financial = stage_fd.get_staged_df()
     f_financial.set_index('financial_data_id', inplace=True)
+  
 
     f_fact = stage_fact.get_staged_df()
-    
-
+    #Run this for outlier detection 
+    ''' 
+    svm.detect_outliers_country(f_country,"country_outliers.csv")
+    df = f_fact.merge(f_financial, on = 'financial_data_id').drop(columns= ['date_id', 'country_id'])
+    df = df.merge(f_company[['sector']], on = 'company_id')
+    df = df.groupby('sector')
+    for sector, sector_df in df:
+        svm.detect_outliers_fiancial(sector_df,"financial_outliers" + sector + ".csv")
+    '''
     #append the data from all the data frames to their respected tables 
     f_country.to_sql("dim_country", con=engine, method='multi',if_exists='append', index=True, index_label="country_id",dtype=None)
     f_company.to_sql("dim_company", con=engine, method='multi',if_exists='append', index=True, index_label="company_id",dtype=None)
