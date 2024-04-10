@@ -114,14 +114,14 @@ def create_database():
 
     f_fact = stage_fact.get_staged_df()
     #Run this for outlier detection 
-    ''' 
+    
     svm.detect_outliers_country(f_country,"country_outliers.csv")
     df = f_fact.merge(f_financial, on = 'financial_data_id').drop(columns= ['date_id', 'country_id'])
     df = df.merge(f_company[['sector']], on = 'company_id')
     df = df.groupby('sector')
     for sector, sector_df in df:
         svm.detect_outliers_fiancial(sector_df,"financial_outliers" + sector + ".csv")
-    '''
+    
     #append the data from all the data frames to their respected tables 
     f_country.to_sql("dim_country", con=engine, method='multi',if_exists='append', index=True, index_label="country_id",dtype=None)
     f_company.to_sql("dim_company", con=engine, method='multi',if_exists='append', index=True, index_label="company_id",dtype=None)
