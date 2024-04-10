@@ -1,10 +1,7 @@
 from sklearn.svm import OneClassSVM
 import pandas as pd
-#do the dataframe country and financial
-#df.to_csv("outliers.csv")
 
 def detect_outliers_country(data_frame,name):
-    #since we don't know what database gets passed in we might need to do preprocessing.filter_data(df)
     df = data_frame.copy()
     df['year'] = df['date'].dt.year
     df['month'] = df['date'].dt.month
@@ -13,7 +10,7 @@ def detect_outliers_country(data_frame,name):
     X = df.to_numpy()  
 
     # Initialize One-Class SVM
-    oc_svm = OneClassSVM(nu=0.05, kernel='rbf', gamma='scale')  # nu is an upper bound on the fraction of training errors rdf = radial basis function and gamma = scale (1/(n_features * X.var()))
+    oc_svm = OneClassSVM(nu=0.05, kernel='rbf', gamma='scale')  # nu is an upper bound on the fraction of training errors rbf = radial basis function and gamma = scale (1/(n_features * X.var()))
 
     # Fit the model
     oc_svm.fit(X)
